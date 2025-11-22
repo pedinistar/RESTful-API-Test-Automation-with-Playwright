@@ -5,6 +5,7 @@
 ![Playwright](https://img.shields.io/badge/Playwright-1.40-orange)
 
 Automated API testing framework for JSONPlaceholder REST API using Playwright's API testing capabilities.
+![Playwright Tests](https://github.com/pedinistar/RESTful-API-Test-Automation-with-Playwright.git/actions/workflows/playwright.yml/badge.svg)
 
 ## Features
 
