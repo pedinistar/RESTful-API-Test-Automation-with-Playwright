@@ -78,3 +78,9 @@ out/
 # Appium specific (if you do mobile testing)
 appium-logs/
 .appium/
+
+# Playwright
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

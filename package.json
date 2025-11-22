@@ -1,0 +1,23 @@
+{
+  "name": "restful-api-test-automation-with-playwright",
+  "version": "1.0.0",
+  "description": "Automated API testing framework for JSONPlaceholder REST API using Playwright's API testing capabilities.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedinistar/RESTful-API-Test-Automation-with-Playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pedinistar/RESTful-API-Test-Automation-with-Playwright/issues"
+  },
+  "homepage": "https://github.com/pedinistar/RESTful-API-Test-Automation-with-Playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.1"
+  }
+}
