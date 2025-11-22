@@ -1,6 +1,7 @@
 # RESTful API Test Automation with Playwright
 
 Automated API testing framework for JSONPlaceholder REST API using Playwright's API testing capabilities.
+![Playwright Tests](https://github.com/pedinistar/RESTful-API-Test-Automation-with-Playwright.git/actions/workflows/playwright.yml/badge.svg)
 
 ## Features
 
