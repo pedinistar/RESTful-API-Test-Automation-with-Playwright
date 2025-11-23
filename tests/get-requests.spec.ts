@@ -30,4 +30,13 @@ test.describe("GET API Tests", () => {
         const response = await request.get(`${BASE_URL}/posts/abc`)
         expect(response.status()).toBe(404)
     })
+
+    // Get all users - verify array length
+    test("get all users and verify array length", async ({ request }) => {
+        const response = await request.get(`${BASE_URL}/users`)
+        const users = await response.json()
+
+        expect(users.length).toBe(10)
+    })
+
 })
