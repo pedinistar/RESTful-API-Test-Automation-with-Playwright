@@ -39,7 +39,29 @@ test.describe("POST API Tests", () => {
         expect(response.status()).toBe(201)
     })
 
-    // TC012 - Create post with special characters - verify handling
-    // TC013 - Verify created post has ID
+    // TC011 - Create post with special characters - verify handling
+    test("create post with special characters", async ({ request }) => {
+        const newSpecialCharPost = {
+            userId: 1,
+            title: "Hello 😊 🚀 @#%&*!",
+            body: "Unicode test — 你好世界! <> {} [] ()"
+        }
+
+        const response = await request.post(`${BASE_URL}/posts`, {
+            data: newSpecialCharPost
+        })
+
+        expect(response.status()).toBe(201)
+
+        const responseBody = await response.json()
+
+        expect(responseBody.userId).toBe(newSpecialCharPost.userId)
+        expect(responseBody.title).toBe(newSpecialCharPost.title)
+        expect(responseBody.body).toBe(newSpecialCharPost.body)
+
+        expect(responseBody.id).toBeDefined()
+
+    })
+
     // TC014 - Verify Location header in response
 })
