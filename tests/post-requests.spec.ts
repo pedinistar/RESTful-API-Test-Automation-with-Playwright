@@ -63,5 +63,13 @@ test.describe("POST API Tests", () => {
 
     })
 
-    // TC014 - Verify Location header in response
+    // TC012 - Verify Location header in response
+    test("verify location header in response", async ({ request }) => {
+        const response = await request.post(`${BASE_URL}/posts`, {
+            data: { title: "test", body: "test body", userId: 1 }
+        })
+
+        const locationHeader = response.headers()["location"]
+        expect(locationHeader).toContain("/posts/")
+    })
 })
