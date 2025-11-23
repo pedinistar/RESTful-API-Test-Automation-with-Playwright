@@ -39,4 +39,20 @@ test.describe("GET API Tests", () => {
         expect(users.length).toBe(10)
     })
 
+    // Get user by ID - verify user data fields
+    test("get user by ID and verify user data feilds", async ({ request }) => {
+        const response = await request.get(`${BASE_URL}/users/1`)
+        const user = await response.json()
+
+        expect(user.id).toBe(1)
+        expect(user).toHaveProperty("name")
+        expect(user).toHaveProperty("username")
+        expect(user).toHaveProperty("email")
+        expect(user).toHaveProperty("address")
+        expect(user).toHaveProperty("phone")
+        expect(user).toHaveProperty("website")
+        expect(user).toHaveProperty("company")
+
+    })
+
 })
