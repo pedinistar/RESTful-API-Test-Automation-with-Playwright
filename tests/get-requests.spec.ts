@@ -36,6 +36,7 @@ test.describe("GET API Tests", () => {
         const response = await request.get(`${BASE_URL}/users`)
         const users = await response.json()
 
+        expect(users.length).toBeGreaterThan(0)
         expect(users.length).toBe(10)
     })
 
@@ -53,6 +54,18 @@ test.describe("GET API Tests", () => {
         expect(user).toHaveProperty("website")
         expect(user).toHaveProperty("company")
 
+    })
+
+    // Get posts by userId - verify filtering works
+    test("get posts by userid and verify filtering works", async ({ request }) => {
+        let userId = 1
+        const response = await request.get(`${BASE_URL}/posts/userId=${userId}`)
+
+        const posts = await response.json()
+
+        for (let i = 0; i <= posts.length; i++) {
+            expect(posts[i].userId).toBe(userId)
+        }
     })
 
 })
