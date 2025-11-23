@@ -75,5 +75,16 @@ test.describe("GET API Tests", () => {
         expect(headers['content-type']).toContain('application/json')
     })
 
+    // Verify response time < 2000ms
+    test("verify response time", async ({ request }) => {
+        const startTime = Date.now()
+        const response = await request.get(`${BASE_URL}/posts`)
+        const endTime = Date.now()
+
+        const responseTime = endTime - startTime
+
+        expect(responseTime).toBeLessThan(2000)
+
+    })
 
 })
