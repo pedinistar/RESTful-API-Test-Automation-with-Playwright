@@ -68,4 +68,12 @@ test.describe("GET API Tests", () => {
         }
     })
 
+    // Verify response headers (Content-Type)
+    test("verify response headers", async ({ request }) => {
+        const response = await request.get(`${BASE_URL}/posts`)
+        const headers = response.headers()
+        expect(headers['content-type']).toContain('application/json')
+    })
+
+
 })
