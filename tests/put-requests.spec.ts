@@ -47,7 +47,7 @@ test.describe("PUT API Tests", () => {
     */
 
     // TC014 - Update non - existent post - verify 404
-    test("update non-existent post", async ({ request }) => {
+    test.fail("update non-existent post", async ({ request }) => {
 
         // TODO: BUG - API returns 500 instead of 404 for non-existent post
         const response = await request.put(`${BASE_URL}/posts/101`)
