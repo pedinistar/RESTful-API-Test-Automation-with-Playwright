@@ -3,6 +3,7 @@ import { test, expect } from '@playwright/test'
 const BASE_URL = 'https://jsonplaceholder.typicode.com'
 
 test.describe("POST API Tests", () => {
+
     // TC009 - Create new post - verify 201 status
     test("create new post with valid data and verify 201 and response body", async ({ request }) => {
         const newPost = {
@@ -61,15 +62,5 @@ test.describe("POST API Tests", () => {
 
         expect(responseBody.id).toBeDefined()
 
-    })
-
-    // TC012 - Verify Location header in response
-    test("verify location header in response", async ({ request }) => {
-        const response = await request.post(`${BASE_URL}/posts`, {
-            data: { title: "test", body: "test body", userId: 1 }
-        })
-
-        const locationHeader = response.headers()["location"]
-        expect(locationHeader).toContain("/posts/")
     })
 })

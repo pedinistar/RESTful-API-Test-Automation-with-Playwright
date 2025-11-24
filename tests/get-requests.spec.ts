@@ -60,7 +60,7 @@ test.describe("GET API Tests", () => {
     })
 
     // TC006 - Get posts by userId - verify filtering works
-    test.only("get posts by userid and verify filtering works", async ({ request }) => {
+    test("get posts by userid and verify filtering works", async ({ request }) => {
         let userId = 1
         const response = await request.get(`${BASE_URL}/posts?userId=${userId}`)
 
