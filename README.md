@@ -49,7 +49,7 @@ npx playwright install
 npx playwright test
 
 # Run specific test file
-npx playwright test tests/get-requests.spec.js
+npx playwright test tests/get-requests.spec.ts
 
 # Run tests in headed mode
 npx playwright test --headed
@@ -66,24 +66,24 @@ npx playwright show-report
 | Test Category | Test Count |
 |--------------|------------|
 | GET Requests | 8 |
-| POST Requests | 6 |
+| POST Requests | 3 |
 | PUT Requests | 5 |
 | DELETE Requests | 3 |
-| Data-Driven Tests | 3 |
-| **Total** | **25** |
+| Data-Driven Tests | 2 |
+| **Total** | **21** |
 
 ## Project Structure
 ```
 api-testing-playwright/
 ├── tests/
-│   ├── get-requests.spec.js
-│   ├── post-requests.spec.js
-│   ├── put-requests.spec.js
-│   ├── delete-requests.spec.js
-│   └── data-driven.spec.js
+│   ├── get-requests.spec.ts
+│   ├── post-requests.spec.ts
+│   ├── put-requests.spec.ts
+│   ├── delete-requests.spec.ts
+│   └── data-driven.spec.ts
 ├── utils/
-│   └── test-data.js
-├── playwright.config.js
+│   └── test-data.ts
+├── playwright.config.ts
 └── README.md
 ```
 
