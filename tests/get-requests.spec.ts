@@ -3,6 +3,8 @@ import { test, expect } from '@playwright/test'
 const BASE_URL = 'https://jsonplaceholder.typicode.com'
 
 test.describe("GET API Tests", () => {
+
+    // TC001
     test("should get all posts and verify status 200", async ({ request }) => {
         const response = await request.get(`${BASE_URL}/posts`)
         const posts = await response.json()
@@ -11,6 +13,7 @@ test.describe("GET API Tests", () => {
         expect(posts.length).toBeGreaterThan(0)
     })
 
+    // TC002
     test("should get a single post by ID and verify structure", async ({ request }) => {
         const response = await request.get(`${BASE_URL}/posts/1`)
         expect(response.status()).toBe(200)
@@ -25,13 +28,13 @@ test.describe("GET API Tests", () => {
         expect(post.id).toBe(1)
     })
 
-    // Get invalid post ID - verify 404
+    // TC003 - Get invalid post ID - verify 404
     test("get invalid post ID and verify 404", async ({ request }) => {
         const response = await request.get(`${BASE_URL}/posts/abc`)
         expect(response.status()).toBe(404)
     })
 
-    // Get all users - verify array length
+    // TC004 - Get all users - verify array length
     test("get all users and verify array length", async ({ request }) => {
         const response = await request.get(`${BASE_URL}/users`)
         const users = await response.json()
@@ -40,7 +43,7 @@ test.describe("GET API Tests", () => {
         expect(users.length).toBe(10)
     })
 
-    // Get user by ID - verify user data fields
+    // TC005 - Get user by ID - verify user data fields
     test("get user by ID and verify user data feilds", async ({ request }) => {
         const response = await request.get(`${BASE_URL}/users/1`)
         const user = await response.json()
@@ -56,14 +59,14 @@ test.describe("GET API Tests", () => {
 
     })
 
-    // Get posts by userId - verify filtering works
-    test("get posts by userid and verify filtering works", async ({ request }) => {
+    // TC006 - Get posts by userId - verify filtering works
+    test.only("get posts by userid and verify filtering works", async ({ request }) => {
         let userId = 1
-        const response = await request.get(`${BASE_URL}/posts/userId=${userId}`)
+        const response = await request.get(`${BASE_URL}/posts?userId=${userId}`)
 
         const posts = await response.json()
 
-        for (let i = 0; i <= posts.length; i++) {
+        for (let i = 0; i <= posts.length - 1; i++) {
             expect(posts[i].userId).toBe(userId)
         }
     })

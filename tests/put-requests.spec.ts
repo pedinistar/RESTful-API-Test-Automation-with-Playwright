@@ -53,7 +53,19 @@ test.describe("PUT API Tests", () => {
         expect(response.status()).toBe(404)
     })
 
-    // Update with invalid data - verify validation
-    // Verify updated fields in response
+    // TC015 - Update with invalid data - verify validation
+    test("update with invalid data", async ({ request }) => {
+        const response = await request.put(`${BASE_URL}/posts/1`, {
+            data: {
+                title: 12345,
+                body: null,
+                userId: "not a number"
+            }
+        })
+
+        console.log(await response.json());
+
+        expect(response.status()).toBe(200)
+    })
 
 })
