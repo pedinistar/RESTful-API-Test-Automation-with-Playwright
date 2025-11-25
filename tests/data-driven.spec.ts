@@ -1,7 +1,5 @@
 import { test, expect } from '@playwright/test'
-
-const BASE_URL = 'https://jsonplaceholder.typicode.com'
-
+import { testData } from '../utils/test-data'
 
 test.describe("Data driven API tests", () => {
 
@@ -9,7 +7,7 @@ test.describe("Data driven API tests", () => {
     for (const userId of userIds) {
 
         test(`should get posts for user ${userId}`, async ({ request }) => {
-            const response = await request.get(`${BASE_URL}/posts?userId=${userId}`)
+            const response = await request.get(`${testData.BASE_URL}/posts?userId=${userId}`)
 
             expect(response.status()).toBe(200)
 
@@ -25,7 +23,7 @@ test.describe("Data driven API tests", () => {
     const invalidIds = [-1, 0, 'abc', 99999];
     for (const invalidId of invalidIds) {
         test(`should handle invalid userId ${invalidId}`, async ({ request }) => {
-            const response = await request.get(`${BASE_URL}/posts?userId=${invalidId}`)
+            const response = await request.get(`${testData.BASE_URL}/posts?userId=${invalidId}`)
 
             expect(response.status()).toBe(200);
 
@@ -34,6 +32,5 @@ test.describe("Data driven API tests", () => {
             expect(posts.length).toBe(0);
 
         })
-
     }
 })

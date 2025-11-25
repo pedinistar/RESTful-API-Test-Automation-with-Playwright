@@ -1,14 +1,12 @@
 import { test, expect } from '@playwright/test'
 import { testData } from '../utils/test-data'
 
-const BASE_URL = 'https://jsonplaceholder.typicode.com'
-
 test.describe("POST API Tests", () => {
 
     // TC009 - Create new post - verify 201 status
     test("create new post with valid data and verify 201 and response body", async ({ request }) => {
 
-        const response = await request.post(`${BASE_URL}/posts`, {
+        const response = await request.post(`${testData.BASE_URL}/posts`, {
             data: testData.validPost
         })
 
@@ -25,7 +23,7 @@ test.describe("POST API Tests", () => {
     // TC010 - Create post without title - verify 400 / validation
     test.fail("create post without title", async ({ request }) => {
 
-        const response = await request.post(`${BASE_URL}/posts`, {
+        const response = await request.post(`${testData.BASE_URL}/posts`, {
             data: testData.invalidPost
         })
 
@@ -35,7 +33,7 @@ test.describe("POST API Tests", () => {
     // TC011 - Create post with special characters - verify handling
     test("create post with special characters", async ({ request }) => {
 
-        const response = await request.post(`${BASE_URL}/posts`, {
+        const response = await request.post(`${testData.BASE_URL}/posts`, {
             data: testData.specialCharPost
         })
 

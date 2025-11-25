@@ -1,12 +1,11 @@
 import { test, expect } from '@playwright/test'
-
-const BASE_URL = 'https://jsonplaceholder.typicode.com'
+import { testData } from '../utils/test-data'
 
 test.describe("GET API Tests", () => {
 
     // TC001
     test("should get all posts and verify status 200", async ({ request }) => {
-        const response = await request.get(`${BASE_URL}/posts`)
+        const response = await request.get(`${testData.BASE_URL}/posts`)
         const posts = await response.json()
 
         expect(response.status()).toBe(200)
@@ -15,7 +14,7 @@ test.describe("GET API Tests", () => {
 
     // TC002
     test("should get a single post by ID and verify structure", async ({ request }) => {
-        const response = await request.get(`${BASE_URL}/posts/1`)
+        const response = await request.get(`${testData.BASE_URL}/posts/1`)
         expect(response.status()).toBe(200)
 
         const post = await response.json()
@@ -30,13 +29,13 @@ test.describe("GET API Tests", () => {
 
     // TC003 - Get invalid post ID - verify 404
     test("get invalid post ID and verify 404", async ({ request }) => {
-        const response = await request.get(`${BASE_URL}/posts/abc`)
+        const response = await request.get(`${testData.BASE_URL}/posts/abc`)
         expect(response.status()).toBe(404)
     })
 
     // TC004 - Get all users - verify array length
     test("get all users and verify array length", async ({ request }) => {
-        const response = await request.get(`${BASE_URL}/users`)
+        const response = await request.get(`${testData.BASE_URL}/users`)
         const users = await response.json()
 
         expect(users.length).toBeGreaterThan(0)
@@ -45,7 +44,7 @@ test.describe("GET API Tests", () => {
 
     // TC005 - Get user by ID - verify user data fields
     test("get user by ID and verify user data feilds", async ({ request }) => {
-        const response = await request.get(`${BASE_URL}/users/1`)
+        const response = await request.get(`${testData.BASE_URL}/users/1`)
         const user = await response.json()
 
         expect(user.id).toBe(1)
@@ -62,7 +61,7 @@ test.describe("GET API Tests", () => {
     // TC006 - Get posts by userId - verify filtering works
     test("get posts by userid and verify filtering works", async ({ request }) => {
         let userId = 1
-        const response = await request.get(`${BASE_URL}/posts?userId=${userId}`)
+        const response = await request.get(`${testData.BASE_URL}/posts?userId=${userId}`)
 
         const posts = await response.json()
 
@@ -73,7 +72,7 @@ test.describe("GET API Tests", () => {
 
     // TC007 - Verify response headers (Content-Type)
     test("verify response headers", async ({ request }) => {
-        const response = await request.get(`${BASE_URL}/posts`)
+        const response = await request.get(`${testData.BASE_URL}/posts`)
         const headers = response.headers()
         expect(headers['content-type']).toContain('application/json')
     })
@@ -81,7 +80,7 @@ test.describe("GET API Tests", () => {
     // TC008 - Verify response time < 2000ms
     test("verify response time", async ({ request }) => {
         const startTime = Date.now()
-        const response = await request.get(`${BASE_URL}/posts`)
+        const response = await request.get(`${testData.BASE_URL}/posts`)
         const endTime = Date.now()
 
         const responseTime = endTime - startTime

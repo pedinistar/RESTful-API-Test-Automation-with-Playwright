@@ -1,12 +1,11 @@
 import { test, expect } from '@playwright/test'
-
-const BASE_URL = 'https://jsonplaceholder.typicode.com'
+import { testData } from '../utils/test-data'
 
 test.describe("PUT API Tests", () => {
 
     // TC012 - Update existing post - verify 200
     test('update existing post', async ({ request }) => {
-        const response = await request.put(`${BASE_URL}/posts/1`, {
+        const response = await request.put(`${testData.BASE_URL}/posts/1`, {
             data: {
                 userId: 3,
                 id: 3,
@@ -24,7 +23,7 @@ test.describe("PUT API Tests", () => {
 
     // TC013 - Update with partial data - verify merge
     test("update with partial data", async ({ request }) => {
-        const response = await request.put(`${BASE_URL}/posts/1`, {
+        const response = await request.put(`${testData.BASE_URL}/posts/1`, {
             data: {
                 title: "Partial Update"
             }
@@ -50,7 +49,7 @@ test.describe("PUT API Tests", () => {
     test.fail("update non-existent post", async ({ request }) => {
 
         // TODO: BUG - API returns 500 instead of 404 for non-existent post
-        const response = await request.put(`${BASE_URL}/posts/101`)
+        const response = await request.put(`${testData.BASE_URL}/posts/101`)
 
         console.log(response.status());
         expect(response.status()).toBe(404)
@@ -58,7 +57,7 @@ test.describe("PUT API Tests", () => {
 
     // TC015 - Update with invalid data - verify validation
     test.fail("update with invalid data", async ({ request }) => {
-        const response = await request.put(`${BASE_URL}/posts/1`, {
+        const response = await request.put(`${testData.BASE_URL}/posts/1`, {
             data: {
                 title: 12345,
                 body: null,

@@ -1,4 +1,5 @@
 export const testData = {
+    BASE_URL: 'https://jsonplaceholder.typicode.com',
     validPost: {
         userId: 1,
         title: 'Test Post',
