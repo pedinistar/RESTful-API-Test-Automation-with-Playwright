@@ -1,10 +1,13 @@
 # RESTful API Test Automation with Playwright
 
-[![Playwright Tests](https://github.com/pedinistar/RESTful-API-Test-Automation-with-Playwright/actions/workflows/playwright.yml/badge.svg)](https://github.com/pedinistar/RESTful-API-Test-Automation-with-Playwright/actions/workflows/playwright.yml)
-![Node.js Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen)
-![Playwright](https://img.shields.io/badge/Playwright-1.40-orange)
 
-Automated API testing framework for JSONPlaceholder REST API using Playwright's API testing capabilities.
+![Playwright Tests](https://github.com/pedinistar/RESTful-API-Test-Automation-with-Playwright/actions/workflows/playwright.yml/badge.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+> A comprehensive REST API testing framework demonstrating modern test automation practices with Playwright. Features include data-driven testing, CI/CD integration, and intentional failure testing to showcase real-world API limitations.
 
 
 ## Features
@@ -72,6 +75,24 @@ npx playwright show-report
 | Data-Driven Tests | 2 |
 | **Total** | **21** |
 
+## 📋 Test Case Documentation
+
+Detailed test cases with pre-conditions, steps, and expected results are documented in:
+- Test Case sheet is in docs folder
+- [Test Case Specification](https://docs.google.com/spreadsheets/d/1UBj2W_RnPmmCuRkp93y7dPKnmcBqlrmedOg1rReInYc/edit?usp=sharing)
+
+### Test Coverage Breakdown:
+
+**Positive Tests (14):** Validate happy path scenarios       
+**Negative Tests (7):** Test error handling and validation
+
+### Key Test Scenarios:
+- ✅ CRUD operations validation
+- ✅ Response time verification (< 2000ms)
+- ✅ Special character handling
+- ✅ Invalid input validation
+- ✅ Data-driven testing with multiple datasets
+
 ## Project Structure
 ```
 api-testing-playwright/
@@ -105,6 +126,24 @@ api-testing-playwright/
 **JSONPlaceholder**: https://jsonplaceholder.typicode.com/
 
 A free fake REST API for testing and prototyping.
+
+## ⚠️ Known Issues / API Limitations
+
+JSONPlaceholder is a mock API with some limitations:
+
+1. **TC010 - Missing Title Validation**: API accepts posts without required fields
+   - Expected: 400 Bad Request
+   - Actual: 201 Created
+   
+2. **TC014 - Non-existent Resource Update**: Returns 500 instead of 404
+   - Expected: 404 Not Found
+   - Actual: 500 Internal Server Error
+
+3. **TC017 - Delete Non-existent Post**: Returns 200 for non-existent resources
+   - Expected: 404 Not Found
+   - Actual: 200 OK
+
+These tests are marked with `test.fail()` to document expected behavior vs actual API responses.
 
 ## CI/CD
 
