@@ -12,7 +12,7 @@
 
 ## Features
 
-- ✅ 25+ automated API test cases
+- ✅ 27 automated API test cases
 - ✅ Tests for GET, POST, PUT, DELETE operations
 - ✅ Data-driven testing approach
 - ✅ Response validation (status codes, headers, body)
@@ -22,7 +22,7 @@
 ## Tech Stack
 
 - **Playwright** - API testing framework
-- **JavaScript** - Programming language
+- **TypeScript** - Programming language
 - **Node.js** - Runtime environment
 - **GitHub Actions** - CI/CD pipeline
 
@@ -70,10 +70,10 @@ npx playwright show-report
 |--------------|------------|
 | GET Requests | 8 |
 | POST Requests | 3 |
-| PUT Requests | 5 |
+| PUT Requests | 4 |
 | DELETE Requests | 3 |
-| Data-Driven Tests | 2 |
-| **Total** | **21** |
+| Data-Driven Tests | 9 | 
+| **Total** | **27** |
 
 ## 📋 Test Case Documentation
 
@@ -81,10 +81,6 @@ Detailed test cases with pre-conditions, steps, and expected results are documen
 - Test Case sheet is in docs folder
 - [Test Case Specification](https://docs.google.com/spreadsheets/d/1UBj2W_RnPmmCuRkp93y7dPKnmcBqlrmedOg1rReInYc/edit?usp=sharing)
 
-### Test Coverage Breakdown:
-
-**Positive Tests (14):** Validate happy path scenarios       
-**Negative Tests (7):** Test error handling and validation
 
 ### Key Test Scenarios:
 - ✅ CRUD operations validation
@@ -139,8 +135,20 @@ JSONPlaceholder is a mock API with some limitations:
    - Expected: 404 Not Found
    - Actual: 500 Internal Server Error
 
-3. **TC017 - Delete Non-existent Post**: Returns 200 for non-existent resources
+3. **TC015 - Update with invalid data**: Returns 200 instead of 400
+   - Expected: 400 Bad Request
+   - Actual: 200 OK
+
+4. **TC017 - Delete Non-existent Post**: Returns 200 for non-existent resources
    - Expected: 404 Not Found
+   - Actual: 200 OK
+
+5. **TC018 - Verify response body after deletion**: Returns {} 200 OK for deleted resource
+   - Expected: 404 Not Found
+   - Actual: 200 OK
+
+6. **TC021 - Handle invalid userid**: Returns 200
+   - Expected: 404 Invalid Type
    - Actual: 200 OK
 
 These tests are marked with `test.fail()` to document expected behavior vs actual API responses.

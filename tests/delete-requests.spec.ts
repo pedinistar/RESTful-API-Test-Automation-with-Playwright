@@ -20,10 +20,15 @@ test.describe("DELETE API Requests", () => {
     test.fail("TC018 - Verify response body after deletion", async ({ request }) => {
         const response = await request.delete(`${BASE_URL}/posts/1`)
         const postBody = await response.json()
+
+        // Should give 404 status but shows 200
+
         expect(postBody.title).toBeDefined()
         expect(postBody.body).toBeDefined()
         expect(postBody.userId).toBeDefined()
         expect(postBody.id).toBeDefined()
+
+        expect(response.json()).toBe({})
     })
 
 })

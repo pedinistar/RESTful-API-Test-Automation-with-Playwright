@@ -21,4 +21,19 @@ test.describe("Data driven API tests", () => {
         })
 
     }
+
+    const invalidIds = [-1, 0, 'abc', 99999];
+    for (const invalidId of invalidIds) {
+        test(`should handle invalid userId ${invalidId}`, async ({ request }) => {
+            const response = await request.get(`${BASE_URL}/posts?userId=${invalidId}`)
+
+            expect(response.status()).toBe(200);
+
+            const posts = await response.json();
+            expect(Array.isArray(posts)).toBeTruthy();
+            expect(posts.length).toBe(0);
+
+        })
+
+    }
 })

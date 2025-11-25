@@ -23,13 +23,13 @@ test.describe("POST API Tests", () => {
     })
 
     // TC010 - Create post without title - verify 400 / validation
-    test("create post without title", async ({ request }) => {
+    test.fail("create post without title", async ({ request }) => {
 
         const response = await request.post(`${BASE_URL}/posts`, {
             data: testData.invalidPost
         })
 
-        expect(response.status()).toBe(201)
+        expect(response.status()).toBe(400) // But gives 201
     })
 
     // TC011 - Create post with special characters - verify handling

@@ -71,14 +71,14 @@ test.describe("GET API Tests", () => {
         }
     })
 
-    // Verify response headers (Content-Type)
+    // TC007 - Verify response headers (Content-Type)
     test("verify response headers", async ({ request }) => {
         const response = await request.get(`${BASE_URL}/posts`)
         const headers = response.headers()
         expect(headers['content-type']).toContain('application/json')
     })
 
-    // Verify response time < 2000ms
+    // TC008 - Verify response time < 2000ms
     test("verify response time", async ({ request }) => {
         const startTime = Date.now()
         const response = await request.get(`${BASE_URL}/posts`)

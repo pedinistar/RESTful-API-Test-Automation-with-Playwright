@@ -57,7 +57,7 @@ test.describe("PUT API Tests", () => {
     })
 
     // TC015 - Update with invalid data - verify validation
-    test("update with invalid data", async ({ request }) => {
+    test.fail("update with invalid data", async ({ request }) => {
         const response = await request.put(`${BASE_URL}/posts/1`, {
             data: {
                 title: 12345,
@@ -68,7 +68,7 @@ test.describe("PUT API Tests", () => {
 
         console.log(await response.json());
 
-        expect(response.status()).toBe(200)
+        expect(response.status()).toBe(400) // but gives 200
     })
 
 })
