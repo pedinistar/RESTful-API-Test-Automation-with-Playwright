@@ -104,19 +104,6 @@ api-testing-playwright/
 └── README.md
 ```
 
-## 📸 Demo
-
-### Test Execution
-![Test Execution](screenshots/test-run.png)
-
-### Test Report
-![Test Report](screenshots/test-report-1.png)
-![Test Report](screenshots/test-report-2.png)
-![Test Report](screenshots/test-report-3.png)
-
-### CI/CD Pipeline
-![CI/CD](screenshots/github-actions.png)
-
 ## API Under Test
 
 **JSONPlaceholder**: https://jsonplaceholder.typicode.com/
